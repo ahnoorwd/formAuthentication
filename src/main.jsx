@@ -12,6 +12,7 @@ import Main from './leyout/Main';
 import Home from './comononets/home/Home';
 import Login from './comononets/login/Login';
 import Register from './comononets/register/Register';
+import Signup from './comononets/signup/Signup';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
     {
       path:"/register",
       element:<Register></Register>
+    },
+    {
+      path:"/signup",
+      element:<Signup></Signup>
     }
   
   
