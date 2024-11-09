@@ -1,7 +1,8 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "../firebase/firebase.init";
 import { IoEyeSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 const Signup = () => {
   const [errormessage, seterrormessage] = useState("");
   const [succes, setsuccess] = useState(false);
@@ -39,6 +40,10 @@ const Signup = () => {
       .then((result) => {
         console.log(result.user);
         setsuccess(true);
+        sendEmailVerification(auth.currentUser)
+        .then (() =>{
+       console.log('varified email'); 
+        })
       })
       .catch((error) => {
         console.log("there is error", error.message);
@@ -107,6 +112,10 @@ const Signup = () => {
           {succes && (
             <p className="text-green-500 font-bold">successfully signup !!</p>
           )}
+
+          <div className="p-2 font-bold">
+            <p>if you have an account <Link to='/login'><span className="text-green-500 underline">Login</span></Link> </p>
+          </div>
         </div>
       </div>
     </div>
